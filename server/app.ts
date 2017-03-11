@@ -5,6 +5,8 @@ import * as compression from "compression";
 import {notFound, productionErrorHandler} from "./error-handlers";
 import {publicRouter} from "./public-router";
 
+process.env.NODE_ENV = "production";
+
 const app: express.Application = express();
 app.disable("x-powered-by");
 
@@ -18,12 +20,14 @@ app.use("/api/public", publicRouter);
 
 // environment
 switch (app.get("env")) {
-    case "Production":
+    case "production":
+        console.log("using production environment...");
         // in production mode run application from dist folder
         app.use(express.static(path.join(__dirname, "/../client")));
         app.use(productionErrorHandler);
         break;
     default:
+        console.log("default environment:", app.get("env"));
         break;
 }
 
