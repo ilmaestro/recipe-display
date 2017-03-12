@@ -3,9 +3,9 @@ import * as path from "path";
 import {json, urlencoded} from "body-parser";
 import * as compression from "compression";
 import {notFound, productionErrorHandler} from "./error-handlers";
-import {publicRouter} from "./public-router";
+import {publicRouter, eventsRouter} from "./router";
 
-process.env.NODE_ENV = "production";
+// process.env.NODE_ENV = "production";
 
 const app: express.Application = express();
 app.disable("x-powered-by");
@@ -17,6 +17,7 @@ app.use(urlencoded({ extended: true}));
 
 // routes
 app.use("/api/public", publicRouter);
+app.use("/api/eventsource", eventsRouter);
 
 // environment
 switch (app.get("env")) {

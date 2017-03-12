@@ -100,5 +100,9 @@ if __name__=="__main__":
 ```
 
 
-## Web Server
-blah blah
+## task list
+
+- how to push content to angular from server
+    - set up a polling mechanism
+
+## angular/express event stream

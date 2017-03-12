@@ -1,3 +1,11 @@
 <h1>
   {{title}}
 </h1>
+
+<ul>
+  <li *ngFor="let data of someData">
+    <div>url: {{ data.url }}</div>
+    <div [innerHtml]="data.ingredientsBody"></div>
+    <div [innerHtml]="data.directionsBody"></div>
+  </li>
+</ul>
