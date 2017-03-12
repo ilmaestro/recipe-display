@@ -1,2 +1,2 @@
 export { publicRouter } from "./public";
-export { eventsRouter } from "./events";
+export { displayRouter } from "./display";

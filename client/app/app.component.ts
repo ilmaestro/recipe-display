@@ -1,6 +1,7 @@
 import { Component, OnInit, NgZone } from "@angular/core";
 import {Observable} from "rxjs/observable";
 import {Observer} from "rxjs/observer";
+import {IRecipeEvent} from "../../shared";
 
 interface IMessageEvent<T> {
   type: string;
@@ -9,29 +10,23 @@ interface IMessageEvent<T> {
   origin: string;
 }
 
-interface IRecipeEvent {
-    url: string;
-    ingredientsBody: string;
-    directionsBody: string;
-}
-
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
   styleUrls: ["./app.component.css"]
 })
 export class AppComponent implements OnInit {
-  title = "app works!";
-  someData: IRecipeEvent[] = [];
+  title = "Awaiting events...";
   zone: NgZone;
+  recipeEvents: IRecipeEvent[];
 
   constructor() {
     this.zone = new NgZone({enableLongStackTrace: false});
   }
 
   ngOnInit() {
-    const observable: Observable<IRecipeEvent> = Observable.create((observer: Observer<IRecipeEvent>) => {
-      const eventSource = new EventSource("/api/eventsource");
+    const recipeObservable: Observable<IRecipeEvent> = Observable.create((observer: Observer<IRecipeEvent>) => {
+      const eventSource = new EventSource("/api/display/connect");
       eventSource.onopen = () => {
         console.log("EventSource open");
       };
@@ -49,10 +44,12 @@ export class AppComponent implements OnInit {
       };
     });
 
-    observable.subscribe({
-      next: (data) => {
+    recipeObservable.subscribe({
+      next: (recipe) => {
         this.zone.run(() => {
-          this.someData.push(data);
+          this.recipeEvents = [];
+          this.recipeEvents.push(recipe);
+          this.title = recipe.title;
         });
       },
       error: (err) => {

@@ -3,7 +3,7 @@ import * as path from "path";
 import {json, urlencoded} from "body-parser";
 import * as compression from "compression";
 import {notFound, productionErrorHandler} from "./error-handlers";
-import {publicRouter, eventsRouter} from "./router";
+import {publicRouter, displayRouter} from "./router";
 
 // process.env.NODE_ENV = "production";
 
@@ -17,7 +17,7 @@ app.use(urlencoded({ extended: true}));
 
 // routes
 app.use("/api/public", publicRouter);
-app.use("/api/eventsource", eventsRouter);
+app.use("/api/display", displayRouter);
 
 // environment
 switch (app.get("env")) {

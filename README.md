@@ -24,6 +24,7 @@ Use your phone to send recipes to the monitor.  Utilize the Share feature of the
 		- Http request (makes call to RPi)
 
 ## Recipe API
+- GET /api/display/connect
 - POST /api/display/recipe
 ```json
 {
@@ -33,6 +34,14 @@ Use your phone to send recipes to the monitor.  Utilize the Share feature of the
 - POST /api/display/ingredients
 - POST /api/display/directions
 - POST /api/display/off
+
+### tests
+```bash
+curl -H "Content-Type: application/json" -X POST -d '{"url":"http://www.seriouseats.com/recipes/2017/03/easy-pressure-cooker-pork-chile-verde-recipe.html"}' http://localhost:4300/api/display/recipe
+
+curl -H "Content-Type: application/json" -X POST -d '{"url":"http://www.seriouseats.com/recipes/2016/02/spaghetti-pasta-alle-vongole-clams-recipe.html"}' http://localhost:4300/api/display/recipe
+
+```
 
 ## Recipe Parsers
 Each website should have its own parser, as well as a general purpose parser that makes a best guess at how to get the Ingredients and Directions.
@@ -102,7 +111,8 @@ if __name__=="__main__":
 
 ## task list
 
-- how to push content to angular from server
-    - set up a polling mechanism
-
-## angular/express event stream
+- parse recipes from a url
+- display content in angular
+- control state via control messages
+    - display ingredient
+    - display directions
