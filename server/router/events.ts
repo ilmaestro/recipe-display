@@ -54,11 +54,16 @@ eventsRouter.get("/testevent", (req: Request, res: Response) => {
     broadcast("recipe", JSON.stringify(recipeEvent));
     res.json({message: "OK"});
 });
+/**
+ * simple curl tester: 
+ * curl -H "Content-Type: application/json" -X POST -d '{"url":"http://www.seriouseats.com"}' http://localhost:4300/api/eventsource/url
+ */
 
 eventsRouter.post("/url", (req: Request, res: Response) => {
     const url = req.body.url || "";
     if (!!url) {
-        broadcast("recipe", url);
+        const recipeEvent = getRecipeEvent(url);
+        broadcast("recipe", JSON.stringify(recipeEvent));
     }
     res.json({message: "OK"});
 });
