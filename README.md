@@ -41,6 +41,18 @@ curl -H "Content-Type: application/json" -X POST -d '{"url":"http://www.seriouse
 
 curl -H "Content-Type: application/json" -X POST -d '{"url":"http://www.seriouseats.com/recipes/2016/02/spaghetti-pasta-alle-vongole-clams-recipe.html"}' http://localhost:4300/api/display/recipe
 
+curl -H "Content-Type: application/json" -X POST -d '{"url":"http://www.seriouseats.com/recipes/2017/03/homemade-tortilla-chips.html"}' http://localhost:4300/api/display/recipe
+
+curl -H "Content-Type: application/json" -X POST -d '{"url":"http://www.seriouseats.com/recipes/2017/03/vegan-carbonara-pasta-recipe.html"}' http://localhost:4300/api/display/recipe
+
+
+curl -H "Content-Type: application/json" -X POST -d '{"url":"http://www.food.com/recipe/chicken-and-dumplings-72963"}' http://localhost:4300/api/display/recipe
+
+curl -H "Content-Type: application/json" -X POST -d '{"url":"http://www.marthastewart.com/341261/chicken-and-dumplings"}' http://localhost:4300/api/display/recipe
+
+curl -H "Content-Type: application/json" -X POST -d '{"url":"https://www.chowhound.com/recipes/easy-chicken-ramen-31487"}' http://localhost:4300/api/display/recipe
+
+
 ```
 
 ## Recipe Parsers
@@ -111,8 +123,23 @@ if __name__=="__main__":
 
 ## task list
 
-- parse recipes from a url
-- display content in angular
+- parse recipes from more sites
+    - seriouseats - <http://www.seriouseats.com/recipes/2017/03/easy-pressure-cooker-pork-chile-verde-recipe.html>
+    - food.com - <http://www.food.com/recipe/chicken-and-dumplings-72963>
+    - marthastewart - <http://www.marthastewart.com/341261/chicken-and-dumplings>
+    - allrecipes - <http://allrecipes.com/recipe/15338/old-fashioned-chicken-and-dumplings/>
+    - foodnetwork - <http://www.foodnetwork.com/recipes/paula-deen/chicken-and-dumplings-recipe>
+    - epicurious - <http://www.epicurious.com/recipes/food/views/chicken-and-dumplings-240818>
+    - bonapetit - <http://www.bonappetit.com/recipe/best-chicken-and-dumplings>
+    - chowhound - <https://www.chowhound.com/recipes/easy-chicken-ramen-31487>
+    - saveur - <http://www.saveur.com/home-syle-chicken-ramen-recipe>
+    - jamieoliver - <http://www.jamieoliver.com/recipes/pork-recipes/steaming-ramen/>
+
+- responsive design for various display sizes
+    - landscape/portrait
+    - 1024x768
+    - 800x600
+
 - control state via control messages
     - display ingredient
     - display directions

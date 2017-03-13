@@ -11,6 +11,7 @@
     "e2e": "protractor",
     "build": "ng build --prod --sm=false --aot=true --output-path=dist/client && npm run _server:build",
     "_server:run": "tsc -p ./server && concurrently \"tsc -w -p ./server\" \"nodemon dist/server/bin/www.js\" ",
+    "_server:test": "npm run _server:build && ava",
     "_server:build": "tsc -p ./server",
     "postinstall": "npm run build"
   },
@@ -48,18 +49,26 @@
     "@angular/cli": "1.0.0-rc.1",
     "@angular/compiler-cli": "^2.4.0",
     "@types/jasmine": "2.5.38",
+    "ava": "^0.18.2",
+    "codelyzer": "~2.0.0",
+    "concurrently": "^3.4.0",
     "jasmine-core": "~2.5.2",
     "jasmine-spec-reporter": "~3.2.0",
     "karma": "~1.4.1",
     "karma-chrome-launcher": "~2.0.0",
     "karma-cli": "~1.0.1",
+    "karma-coverage-istanbul-reporter": "^0.2.0",
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
-    "karma-coverage-istanbul-reporter": "^0.2.0",
+    "nodemon": "^1.11.0",
     "protractor": "~5.1.0",
-    "ts-node": "~2.0.0",
-    "codelyzer": "~2.0.0",
-    "concurrently": "^3.4.0",
-    "nodemon": "^1.11.0"
+    "ts-node": "~2.0.0"
+  },
+  "ava": {
+    "files": [
+      "dist/server/**/*.spec.js"
+    ],
+    "concurrency": 5,
+    "failFast": true
   }
 }

@@ -20,10 +20,19 @@ function broadcast(event: string, data: string) {
 function getRecipeEvent(url: string) {
     // determine parser type
     const uri = UrlParse(url);
-    const parser = ParserManager.GetParser(uri.host);
+    const parser = ParserManager.GetParser(uri.hostname);
 
     return new Promise<string>((resolve, reject) => {
-        const req = http.request({host: uri.host, path: uri.path, port: 80, method: "GET"}, (resp: http.IncomingMessage) => {
+        const options = {
+            host: uri.host,
+            path: uri.path,
+            port: 80,
+            method: "GET",
+            headers: {
+                "User-Agent": "RecipeBot-Crawler (recipe-bot@gelletto.com)"
+            }
+        };
+        const req = http.request(options, (resp: http.IncomingMessage) => {
             let contents = "";
             resp.on("data", d => {
                 contents += d;
