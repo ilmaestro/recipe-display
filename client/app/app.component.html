@@ -3,11 +3,17 @@
 </h1>
 
 <section class="recipe-list">
-  <div *ngFor="let recipe of recipeEvents">
+  <div *ngFor="let recipe of recipeEvents" class="recipe-wrapper">
     <div>{{ recipe.url }}</div>
-    <h3>Ingredients</h3>
-    <div [innerHtml]="recipe.ingredientsBody"></div>
-    <h3>Directions</h3>
-    <div [innerHtml]="recipe.directionsBody"></div>
+    <!--ingredients-->
+    <div class="recipe-ingredients">
+      <h3>Ingredients</h3>
+      <div [innerHtml]="recipe.ingredientsBody"></div>
+    </div>
+    <!--directions-->
+    <div class="recipe-directions">
+      <h3>Directions</h3>
+      <div [innerHtml]="recipe.directionsBody"></div>
+    </div>
   </div>
 </section>
