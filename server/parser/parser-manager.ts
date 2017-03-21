@@ -3,6 +3,7 @@ import {SeriousEats} from "./serious-eats.parser";
 import {ChowHound} from "./chowhound.parser";
 import {Food} from "./food.parser";
 import {MarthaStewart} from "./martha-stewart.parser";
+import {CookingNYTimes} from "./cooking-nytimes.parser";
 
 export type Parser = (url: string, content: string) => IRecipeEvent;
 export class ParserManager {
@@ -10,7 +11,8 @@ export class ParserManager {
         "www.seriouseats.com": SeriousEats,
         "www.food.com": Food,
         "www.marthastewart.com": MarthaStewart,
-        "www.chowhound.com": ChowHound
+        "www.chowhound.com": ChowHound,
+        "cooking.nytimes.com": CookingNYTimes
     };
 
     public static GetParser(host: string): Parser {

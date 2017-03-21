@@ -44,6 +44,7 @@ function getRecipeEvent(url: string) {
         req.end();
     })
     .then((contents) => {
+
         return parser(url, contents);
     });
 }
